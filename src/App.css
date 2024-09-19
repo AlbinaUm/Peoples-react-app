@@ -1,0 +1,44 @@
+.App .Button {
+
+    color: white;
+
+    border: 1px solid green;
+
+    background: green;
+
+    border-radius: 3px;
+
+    padding: 10px;
+
+    font-size: 14px;
+
+}
+
+
+
+.App .Button:hover {
+
+    background: lightgreen;
+
+    cursor: pointer;
+
+    color: green;
+
+}
+
+
+
+.App .Button.Red {
+    background: red;
+    border: 1px solid red;
+}
+
+
+
+.App .Button.Red:hover {
+
+    background: salmon;
+
+    color: red;
+
+}
