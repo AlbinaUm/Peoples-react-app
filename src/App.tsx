@@ -1,8 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 import Person from "./components/Person/Person.tsx";
-import { Simulate } from "react-dom/test-utils";
-import transitionEnd = Simulate.transitionEnd;
 
 interface IPerson {
   name: string;
@@ -32,12 +30,6 @@ const App = () => {
   };
 
   const changeName = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
-    console.log(e.target.value);
-
-    // const copyPeople = [...people];
-    // const copyPerson = { ...copyPeople[index] };
-    // copyPerson.name = e.target.value;
-    // copyPeople[index] = copyPerson;
 
     const copyPeople = people.map((person, i) => {
       if (person.id === id) {
@@ -55,21 +47,15 @@ const App = () => {
   const changeAge = (id: number) => {
     let index = people.findIndex((person) => person.id === id);
 
-    const copyPeople = [...people];
-    const copyPerson = { ...copyPeople[index] };
-    copyPerson.age++;
-    copyPeople[index] = copyPerson;
-
-    //
-    // const copyPeople = people.map((person, i) => {
-    //   if (i === index) {
-    //     return {
-    //       ...person,
-    //       age: person.age + 1,
-    //     };
-    //   }
-    //   return { ...person };
-    // });
+    const copyPeople = people.map((person, i) => {
+      if (i === index) {
+        return {
+          ...person,
+          age: person.age + 1,
+        };
+      }
+      return { ...person };
+    });
 
     setPeople(copyPeople);
   };
@@ -82,11 +68,6 @@ const App = () => {
 
   const deletePerson = (id: number) => {
     const copyPeople = people.filter((person) => person.id !== id);
-
-    // let index = people.findIndex((person) => person.id === id);
-    //
-    // const copyPeople = [...people];
-    // copyPeople.splice(index, 1);
 
     setPeople(copyPeople);
   };
@@ -121,10 +102,6 @@ const App = () => {
       <button onClick={changeNameToFirstPerson} type="button">
         Change name to first person
       </button>
-
-      {/*<button type="button" onClick={() => setTogglePeople(!togglePeople)}>*/}
-      {/*  {togglePeople ? "Hide people" : "Show people"}*/}
-      {/*</button>*/}
 
       <button type="button" onClick={onTooglePeople}>
         {togglePeople ? "Hide people" : "Show people"}
